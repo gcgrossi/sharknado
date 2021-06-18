@@ -4,20 +4,27 @@
 
 #### _Introduction_
 
-In my effort to learn computer vision with OpenCV and Python I always incur in some common tasks I need to accomplish before diving into the real juice of each project. Image preprocessing is always needed when working with images. Most of the times this ecompass different actions:
+In my effort to learn computer vision with OpenCV and Python I found that a classifier would be a good project to play around with Keras functionalities and Deep Learning libraries/ architectures. And what is better than putting together my passion for Sharks and Data Science and have some good moments? So here is my project of **sharknado: Shark Classification with Python, OpenCV and Keras**.
 
-* changing image format
-* resizing
-* thresholding
-* edging
-* contour detection
-* many more
+Before describing a little bit what is inside the repository, I would like to clarify the intention of the project. The idea is not to obtain state of the art precision in shark classification, but revising some important deep learning concept: architectures, hyperparameter tuning, data augmentation, regularisation and so on. For this reason the project is always moving, and I constantly add some tools or test new architectures.
 
-I use to write a function each time I end up doing a copy+paste of a snippet more than 2/3 times. I am italian, I don't want to spend time copy pasting code. It's a waste of time I can spend to take a good coffee. But I am also a physicist with some efficiency obsessions. I'm scared to death one day I will write a so messy and inefficient code that the world will crash. Or worse, I would have to pass entire days modifying all the code I wrote. I try to keep it clean, commented, compact and modular.
+#### Difficulty of the Task
 
-So I put every utility function I use in my Computer Vision projects in ```imwizard```, my own version of OpenCV Python toolbox. And sincerely, I use it a lot! I have a passion for graphics too, so I always make some logos or banners for my READMEs...don't take it too seriously! it's just a creative caprice.
+I think is worth spending a couple of words regarding the difficulty of the task. Many books regarding machine learning, as well as blogs present the classification task on "Hallo Word" datasets like (MNIST or Fashion MNIST) or on easily separable datasets, for which a high accuracy can be reached even with simple models and which require not a big effort to train. The task with sharks has an higher level of complicancy because:
+- sharks have almost the same shape.
+- sharks have almost the same color.
+- sharks are often along other sharks.
+- under certain angles (i.e. looking from below) is practically impossible to distinguish them.
+
+For this reason I guess that high level features are not really sufficent to distinguish between them, and a some point we will hit a limit posed by:
+- The availability of shark images 
+- The compromise between the complexity of the architecture used and computing power.
+
+Nonetheless we can try to still reach a reasonable accuracy with not so much computing power, with something that can run on Google Colab without timing-out the runtime.
+
+#### Dataset
+
+For the reasons mentioned above I will try to keep it as simple as possible and I will, for the moment, concentrate my efforts on a binary classifier that will distinguish between white shark and hammerhead shark. Why so? Because at least I could teach the neural network to distinguish the tipical shape of the hammer of the hammerhead shark. Imagine if I started with a distinction between a tiger shark and a white shark. I think I would have miserably failed. As a matter of philosophy of data: you should always start with something simple and doable with your means, and only afterwards increase the complexity. This will give you already a feeling of the complexity of the task and the architecture that best fit your dataset.
 
 
-## coming soon
 
-### coming soon
