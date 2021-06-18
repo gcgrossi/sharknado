@@ -26,5 +26,7 @@ Nonetheless we can try to still reach a reasonable accuracy with not so much com
 
 For the reasons mentioned above I will try to keep it as simple as possible and I will, for the moment, concentrate my efforts on a binary classifier that will distinguish between white shark and hammerhead shark. Why so? Because at least I could teach the neural network to distinguish the tipical shape of the hammer of the hammerhead shark. Imagine if I started with a distinction between a tiger shark and a white shark. I think I would have miserably failed. As a matter of philosophy of data: you should always start with something simple and doable with your means, and only afterwards increase the complexity. This will give you already a feeling of the complexity of the task and the architecture that best fit your dataset.
 
+[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H001_q6wBM2AzzPm5lltAHodUx6y7LpH?usp=sharing)
 
+[![Academia](https://img.shields.io/static/v1?label=%20&message=Download%20in%20Drive&color=gray&logo=google-drive)](https://independent.academia.edu/GiulioCornelioGrossi)
 
