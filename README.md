@@ -129,9 +129,11 @@ A mini test set of 60 images has been also dowloaded to understand the performan
 
 On the test set the results are the following:
 
+
 |               | MLP           | Small VGG     | Tranfer Leaning (VGG) |
-| ------------- | ------------- | ------------- | --------------------- |
+| --- | --- | --- | --- |
 | Accuracy      | 76%           | 78%           | 89%                   |
+
 
 A loss in performance that is not negligible and can impact the abiity to generalize. This can be determined by 2 factors:
 1. The network was trained on a "not heterogeneous" variety of images and is having hard time on generalizing on tricky images
