@@ -128,6 +128,7 @@ A mini test set of 60 images has been also dowloaded to understand the performan
 <img src="assets/test2.jpg" width="30%">
 
 On the test set the results are the following:
+
 |               | MLP           | Small VGG     | Tranfer Leaning (VGG) |
 | ------------- | ------------- | ------------- | --------------------- |
 | Accuracy      | 76%           | 78%           | 89%                   |
