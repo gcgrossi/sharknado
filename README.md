@@ -122,7 +122,7 @@ The Accuracy metric as been chosen as a mean of comparison between the 3 approac
 
 That shows the subsequent improvement in accuracy with increasing complexity of the network. The result is in line with the expectations introduced at the beginning of the project. The VGGNet has already learnt an important amount of features from the imagenet dataset that can be re-used on this specific task. We could not achieve a similar result with the limited amount of data and computing power available. Nonetheless and 86% accuracy is still a pretty decent result from an in-house model, given the complexity of the task. 
 
-A mini test set of 60 images has been also dowloaded to understand the performance out-ofthe-sample. The images have deliberately chosen to be tricky and deceiving for the network. The images include drawings, toys and noisy images. Some examples can be find below:
+A mini test set of 60 images has been also dowloaded to understand the performance out-ofthe-sample. The images have been deliberately chosen to be tricky and deceiving for the network. The images include drawings, toys and noisy images. Some examples can be find below:
 
 <img src="assets/test1.jpg" width="30%">
 <img src="assets/test2.jpg" width="30%">
