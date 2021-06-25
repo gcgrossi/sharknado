@@ -92,7 +92,7 @@ and have been trained separately.
 
 #### Training
 
-the training of the architectures is performed in ```simple_nn_train.py``` and in ```smallvgg_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H001_q6wBM2AzzPm5lltAHodUx6y7LpH?usp=sharing). The training and parameter tuning for the first is straightforward and the model is trainable with CPU. The second model is more demanding in terms of computing power and should be run on Google Colab or with a GPU support. 
+The training of the architectures is performed in ```simple_nn_train.py``` and in ```smallvgg_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H001_q6wBM2AzzPm5lltAHodUx6y7LpH?usp=sharing), on 75% of the total dataset. The training and parameter tuning for the first is straightforward and the model is trainable with CPU. The second model is more demanding in terms of computing power and should be run on Google Colab or with a GPU support. 
 
 For the latter, the learning rate has been tuned using a learning the rate screener in ```smallvgg_find_lr.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1HG_apHuNoXuTPPAipuLYwQR2rSnzPAXl?usp=sharing). The loss as a function of the learning rate is calculated for the training set and shown in the image below
 
@@ -111,4 +111,12 @@ model = VGG16(weights="imagenet", include_top=False)
 with weights from the imagenet dataset and without the Fully Connected Output layer. This pre-trained architecture is used as feature extractor in ```vggnet_feature_extraction_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1apCl6v8eEV7t59lC_eP0GRGUMzbZZVVN?usp=sharing). In the Notebook, the features are extracted and stored in two separate .csv files stored in ```/output```. The training of a Logistic regression on the extracted features will handle the class prediction. This is done in two separate (but equivalent) ways:
 1. in ```vggnet_feature_extraction_train.ipynb``` right after feature extraction. 
 2. in ```vggnet_read_csvfeatures_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/12glb-Zq0lp25iJeqnPAJwUf3jU7yhEr8?usp=sharing) from the .csv files stored in ```/output```.
+
+#### Results
+
+The Accuracy metric as been chosen as a mean of comparison between the 3 approaches. First the accuracy on the validation set (25% of the total dataset) is presented:
+
+|               | MLP           | Small VGG     | Tranfer Leaning (VGG) |
+| ------------- | ------------- | ------------- | --------------------- |
+| Accuracy      | 83%           | 86%           | 98%                   |
 
