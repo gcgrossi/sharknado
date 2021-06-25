@@ -24,7 +24,7 @@ Nonetheless we can try to still reach a reasonable accuracy with not so much com
 
 #### Dataset
 
-[![Dataset](https://img.shields.io/static/v1?label=%20&message=Download%20in%20Drive&color=gray&logo=google-drive)](https://drive.google.com/drive/folders/19haNnXAuVGM1qFYq9Sa5Ktl7RLVgJDPI?usp=sharing)
+[![Dataset](https://img.shields.io/static/v1?label=%20&message=Download%20from%20Drive&color=gray&logo=google-drive)](https://drive.google.com/drive/folders/19haNnXAuVGM1qFYq9Sa5Ktl7RLVgJDPI?usp=sharing)
 
 For the reasons mentioned above I will try to keep it as simple as possible and I will, for the moment, concentrate my efforts on a binary classifier that will distinguish between white shark and hammerhead shark. Why so? Because at least I could teach the neural network to distinguish the tipical shape of the hammer of the hammerhead shark. Imagine if I started with a distinction between a tiger shark and a white shark. I think I would have miserably failed. As a matter of philosophy of data: you should always start with something simple and doable with your means, and only afterwards increase the complexity. This will give you already a feeling of the complexity of the task and the architecture that best fit your dataset.
 
@@ -88,9 +88,35 @@ model.add(Activation("softmax"))
 
 ```
 
+and have been trained separately.
 
+#### Training
 
-[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H001_q6wBM2AzzPm5lltAHodUx6y7LpH?usp=sharing)
+The training of the architectures is performed in ```simple_nn_train.py``` and in ```smallvgg_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1H001_q6wBM2AzzPm5lltAHodUx6y7LpH?usp=sharing), on 75% of the total dataset. The training and parameter tuning for the first is straightforward and the model is trainable with CPU. The second model is more demanding in terms of computing power and should be run on Google Colab or with a GPU support. 
 
-[![Academia](https://img.shields.io/static/v1?label=%20&message=Download%20in%20Drive&color=gray&logo=google-drive)](https://independent.academia.edu/GiulioCornelioGrossi)
+For the latter, the learning rate has been tuned using a learning the rate screener in ```smallvgg_find_lr.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1HG_apHuNoXuTPPAipuLYwQR2rSnzPAXl?usp=sharing). The loss as a function of the learning rate is calculated for the training set and shown in the image below
+
+<img src="assets/lrscreen.png" width="100%">
+
+a sweet spot is chosen when the loss starts to fall. 
+
+#### Transfer Learning
+
+A third training is also performed with a transfer learning technique. The complete VGGNet is downloaded with Keras:
+```python
+from tensorflow.keras.applications import VGG16
+
+model = VGG16(weights="imagenet", include_top=False)
+```
+with weights from the imagenet dataset and without the Fully Connected Output layer. This pre-trained architecture is used as feature extractor in ```vggnet_feature_extraction_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1apCl6v8eEV7t59lC_eP0GRGUMzbZZVVN?usp=sharing). In the Notebook, the features are extracted and stored in two separate .csv files stored in ```/output```. The training of a Logistic regression on the extracted features will handle the class prediction. This is done in two separate (but equivalent) ways:
+1. in ```vggnet_feature_extraction_train.ipynb``` right after feature extraction. 
+2. in ```vggnet_read_csvfeatures_train.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/12glb-Zq0lp25iJeqnPAJwUf3jU7yhEr8?usp=sharing) from the .csv files stored in ```/output```.
+
+#### Results
+
+The Accuracy metric as been chosen as a mean of comparison between the 3 approaches. First the accuracy on the validation set (25% of the total dataset) is presented:
+
+|               | MLP           | Small VGG     | Tranfer Leaning (VGG) |
+| ------------- | ------------- | ------------- | --------------------- |
+| Accuracy      | 83%           | 86%           | 98%                   |
 
