@@ -126,3 +126,22 @@ A mini test set of 60 images has been also dowloaded to understand the performan
 
 <img src="assets/test1.jpg" width="30%">
 <img src="assets/test2.jpg" width="30%">
+
+On the test set the results are the following:
+|               | MLP           | Small VGG     | Tranfer Leaning (VGG) |
+| ------------- | ------------- | ------------- | --------------------- |
+| Accuracy      | 76%           | 78%           | 89%                   |
+
+A loss in performance that is not negligible and can impact the abiity to generalize. This can be determined by 2 factors:
+1. The network was trained on a "not heterogeneous" variety of images and is having hard time on generalizing on tricky images
+2. The networks have an overfitting component that is preventing from generalizing correctly
+
+An improvement of the actual state of the art would therefore encompass:
+1. Selecting and training on a wider, diversified dataset
+2. Going back and improve the training step to reduce overfitting
+
+#### Conclusions
+
+An end to end sharks images calssification project has been presented. A binary classifier has been trained on 950 images of white sharks and 750 images of hammerhead sharks using three types of architectures/techniques: A MLP, a small version of the VGG convolutional network and a complete VGG16 Network using transfer learning. The best performance has been 98% accuracy on the validation set with the transfer learning. A test set of "tricky images" has been also constructed where the performance of the transfer learning dropped to 89%, a possible sign of difficulty in generalization. However, the performance can be considered acceptable and a baseline for further improvements.
+
+The next steps would be adding more data to the original dataset, refine the training and extend the classification to more than two classes. 
