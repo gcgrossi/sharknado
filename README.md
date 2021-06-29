@@ -1,6 +1,6 @@
 # sharknado
 
-<img src="assets/sharknado_Cover.png" width="85%">
+<img src="assets/sharknado_Github_Cover.png" width="100%">
 
 #### _Introduction_
 
