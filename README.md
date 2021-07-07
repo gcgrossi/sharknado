@@ -127,6 +127,8 @@ A mini test set of 60 images has been also dowloaded to understand the performan
 <img src="assets/test1.jpg" width="30%">
 <img src="assets/test2.jpg" width="30%">
 
+The actual prediction is performed in the files ``` predict.py``` (for the MLP and Small VGG architectures) and ```vggnet_predict.py``` (for Logistic regression on the VGG extracted features).
+
 On the test set the results are the following:
 
 
