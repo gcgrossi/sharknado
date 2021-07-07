@@ -8,6 +8,7 @@ Created on Tue Jun  8 08:30:25 2021
 import os
 import cv2
 import pickle
+import numpy as np
 from tensorflow.keras.models import load_model
 
 def main():
@@ -16,9 +17,10 @@ def main():
     test=os.path.join(cwd,"test")
     
     # load the model and label binarizer
-    netname = 'simplenn'
-    netinfo  = {'simplenn':{"pickle":"simple_nn_lb.pickle",'model':'simple_nn.model'  ,'size':32,'flatten':True},
-                'vggnet'  :{"pickle":"smallvggnet.pickle" ,'model':'smallvggnet.model','size':64,'flatten':False}}
+    netname = 'vggnet_finetune'
+    netinfo  = {'simplenn'         :{"pickle":"simple_nn_lb.pickle",'model':'simple_nn.model'  ,'size':32,'flatten':True},
+                'vggnet'           :{"pickle":"smallvggnet.pickle" ,'model':'smallvggnet.model','size':64,'flatten':False},
+                'vggnet_finetune'  :{"pickle":"vggnet_finetune.pickle" ,'model':'vggnet_finetune.model','size':224,'flatten':False}}
    
     
     print("[INFO] loading network and label binarizer...")
@@ -34,9 +36,18 @@ def main():
         
         #resize to model dimensions
         image = cv2.resize(image, (netinfo[netname]["size"], netinfo[netname]["size"]))
-        
-        # scale the pixel values to [0, 1]
-        image = image.astype("float") / 255.0   
+
+        # mean subtraction
+        if netname == 'vggnet_finetune':
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            # convert the image to a floating point data type and perform mean
+            # subtraction
+            image = image.astype("float32")
+            mean = np.array([123.68, 116.779, 103.939][::-1], dtype="float32")
+            image -= mean
+        else:
+            # scale the pixel values to [0, 1]
+            image = image.astype("float") / 255.0   
         
         # check to see if we should flatten the image and add a batch
         # dimension
