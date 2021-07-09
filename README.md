@@ -181,6 +181,19 @@ model = Model(inputs=baseModel.input, outputs=headModel)
 
 ```
 
+the baseModel (the CNN) is freezed or unfreezed by setting its layers not-trainable/trainable in the following way:
+```python
+# loop over all layers in the base model and freeze them
+for layer in baseModel.layers:
+  layer.trainable = False
+  
+# unfreeze last layers
+for layer in baseModel.layers[15:]:
+  layer.trainable = True
+```
+
+
+
 
 #### Conclusions
 
