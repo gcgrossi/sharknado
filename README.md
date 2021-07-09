@@ -204,6 +204,8 @@ We are now also ready to move from the simple Binary Classifier to a more genera
 
 with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5%. The test set has been enlarged with also tricky images of whale sharks, as the following one:
 
+<img src="assets/p1000854" width="100%">
+
 #### Conclusions
 
 An end to end sharks images calssification project has been presented. A binary classifier has been trained on 950 images of white sharks and 750 images of hammerhead sharks using three types of architectures/techniques: A MLP, a small version of the VGG convolutional network and a complete VGG16 Network using transfer learning. The best performance has been 98% accuracy on the validation set with the transfer learning. A test set of "tricky images" has been also constructed where the performance of the transfer learning dropped to 89%, a possible sign of difficulty in generalization. However, the performance can be considered acceptable and a baseline for further improvements.
