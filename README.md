@@ -202,9 +202,11 @@ We are now also ready to move from the simple Binary Classifier to a more genera
 - 750 images of hammerhead sharks
 - 650 images of whale sharks
 
-with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5%. The test set has been enlarged with also tricky images of whale sharks, as the following one:
+with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5%. 
 
-<img src="assets/p1000854" width="100%">
+To test the performance of the newly trained model, the test set has been enlarged with also tricky images of whale sharks, as the following one:
+
+<img src="assets/p1000854.jpg" width="35%">
 
 #### Conclusions
 
