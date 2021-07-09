@@ -161,6 +161,8 @@ Since the architecture is really powerful sometimes point 4 and 5 are not necess
 The ```vvgnet_finetune.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1y69LQ3sEFmGNpm01EKMJwhdTriqkinjG?usp=sharing) Notebook handles the process and stores the model in a ``` .pickle``` file thatcan be used for further prediction.
 
 The architecture is constructed using the Keras functional API in the following way:
+
+_Finetune VGG16_
 ```python
 
 # load the VGG16 network, ensuring the head FC layer sets are left
@@ -202,13 +204,15 @@ We are now also ready to move from the simple Binary Classifier to a more genera
 - 750 images of hammerhead sharks
 - 650 images of whale sharks
 
-with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5%. 
+with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5% and a little bit of overfitting that can impact the test accuracy.
+
+<img src="assets/vggnet_warmup_plot.jpg" width="35%">
 
 To test the performance of the newly trained model, the test set has been enlarged with also tricky images of whale sharks, as the following one:
 
 <img src="assets/p1000854.jpg" width="35%">
 
-reaching an overall accuracy of 93%. 
+The prediction on this particular test set, reaches an overall accuracy of 93%. 
 
 #### Conclusions
 
