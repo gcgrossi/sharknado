@@ -208,6 +208,8 @@ To test the performance of the newly trained model, the test set has been enlarg
 
 <img src="assets/p1000854.jpg" width="35%">
 
+reaching an overall accuracy of 93%. 
+
 #### Conclusions
 
 An end to end sharks images calssification project has been presented. A binary classifier has been trained on 950 images of white sharks and 750 images of hammerhead sharks using three types of architectures/techniques: A MLP, a small version of the VGG convolutional network and a complete VGG16 Network using transfer learning. The best performance has been 98% accuracy on the validation set with the transfer learning. A test set of "tricky images" has been also constructed where the performance of the transfer learning dropped to 89%, a possible sign of difficulty in generalization. However, the performance can be considered acceptable and a baseline for further improvements.
