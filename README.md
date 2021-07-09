@@ -192,8 +192,17 @@ for layer in baseModel.layers[15:]:
   layer.trainable = True
 ```
 
+The training of the model is then straightforward.
 
+#### Adding new classes
 
+We are now also ready to move from the simple Binary Classifier to a more general Classifier and adding more classes. The latter model we constructed has been therefore trained on the following dataset:
+
+- 950 images of white sharks and 
+- 750 images of hammerhead sharks
+- 650 images of whale sharks
+
+with and Early Stopping callback to avoid overfitting, the model reaches a good performance already during the warmup phase, with a validation accuracy of 97.5%. The test set has been enlarged with also tricky images of whale sharks, as the following one:
 
 #### Conclusions
 
