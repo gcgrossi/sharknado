@@ -145,6 +145,43 @@ An improvement of the actual state of the art would therefore encompass:
 1. Selecting and training on a wider, diversified dataset
 2. Going back and improve the training step to reduce overfitting
 
+#### Using a Transfer Learning Finentuning Approach
+
+We have already tried out a Transfer learning approach by using the VGG16 architecture, deprived of its Fully Connected layer, as a feature extractor. Features have been then used to train another, separated classifier (Logistin in our case). We can see that the models shows some problems in generalizing on the test set. This can determined by the quality of the training data but, before adding more, we still want to try another approach to see if we can improve our performance.
+
+We will still use the VGG16 architecture, deprived of its Fully Connected Layer, but we will proceed in the following way:
+1. Add A Dense Fully Connected Layer 
+2. Freeze the Convolutional Layers of VGG16
+3. Warmup the Fully Connected Layer by training with a small Leaning Rate
+4. Unfreeze a couple of Fully Connected Layer
+5. Re-train for fine tuning.
+
+Since the architecture is really powerful sometimes point 4 and 5 are not necessary, since the network has already reached and good accuracy in the warmup phase and is at risk of overfitting.
+
+The ```vvgnet_finetune.ipynb``` [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1y69LQ3sEFmGNpm01EKMJwhdTriqkinjG?usp=sharing) Notebook handles the process and stores the model in a ``` .pickle``` file thatcan be used for further prediction.
+
+The architecture is constructed using the Keras functional API in the following way:
+```python
+
+# load the VGG16 network, ensuring the head FC layer sets are left
+# off
+baseModel = VGG16(weights="imagenet", include_top=False, input_tensor=Input(shape=(224, 224, 3)))
+
+# construct the head of the model that will be placed on top of the
+# the base model
+headModel = baseModel.output
+headModel = Flatten(name="flatten")(headModel)
+headModel = Dense(512, activation="relu")(headModel)
+headModel = Dropout(0.5)(headModel)
+headModel = Dense(len(classes), activation="softmax")(headModel)
+
+# place the head FC model on top of the base model (this will become
+# the actual model we will train)
+model = Model(inputs=baseModel.input, outputs=headModel)
+
+```
+
+
 #### Conclusions
 
 An end to end sharks images calssification project has been presented. A binary classifier has been trained on 950 images of white sharks and 750 images of hammerhead sharks using three types of architectures/techniques: A MLP, a small version of the VGG convolutional network and a complete VGG16 Network using transfer learning. The best performance has been 98% accuracy on the validation set with the transfer learning. A test set of "tricky images" has been also constructed where the performance of the transfer learning dropped to 89%, a possible sign of difficulty in generalization. However, the performance can be considered acceptable and a baseline for further improvements.
