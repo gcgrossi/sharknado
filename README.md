@@ -239,7 +239,28 @@ More information about the process can be found [in the OpenCV Official Site](ht
 Number 2: we can obtain the true bounding box by exploiting the object detection of Google: Google vision API. I use the python wrapper I build for the purpose: **google-vision-wrapper**. It makes the process of retrieving the bounding box easier. You can read about it [here](https://github.com/gcgrossi/google-vision-wrapper).
 
 At the end of the process you will have something like the following:
+
 <img src="assets/build_negative.png" width="50%">
+
+#### _Intersection Over Union (IoU)_
+Number 3: to accomplish the task we compute a metric that will tell how much the true bounding box overlaps with the regions proposed by Selective Search. The ratio between the area of the intersection between the two regions and the area of the union of the two regions will be small for regions of "context", not belonging to the true bounding box. We can therefore create a "not shark" dataset by retaining only those regions with a small Intersection over Union.
+
+Once we have the new dataset it is very easy to retrain the model adding this negative class.
+
+#### Model Files
+All the model files can be found here:
+
+[![Models](https://img.shields.io/static/v1?label=%20&message=Download%20from%20Drive&color=gray&logo=google-drive)](https://drive.google.com/drive/folders/1U3eNxBYE__wC8WuOCTNcrJmrY4SCGnrh?usp=sharing)
+
+The following is a summary of all the useful files:
+
+|  File           | Description  | Pickle |
+| --- | --- | --- | 
+| smallvggnet.model      | The small VGG Net model | smallvggnet.pickle  |
+| vggnet_finetune.model  | The VGG16 finetune model (without negative class) | vggnet_finetune.pickle  |
+| vggnet_finetune_wnegative.model  | The VGG16 finetune model (negative class with IoU=0.1) | vggnet_finetune_wnegative.pickle  |
+| vggnet_finetune_wnegative_iou02.model  | The VGG16 finetune model (negative class with IoU=0.2) | vggnet_finetune_wnegative_iou02.pickle  |
+| train.csv, val.csv      | The features extracted using the VGG16 transfer model | vggnet_transfer_model.pickle  |
 
 
 #### Conclusions
