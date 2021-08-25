@@ -214,6 +214,34 @@ To test the performance of the newly trained model, the test set has been enlarg
 
 The prediction on this particular test set, reaches an overall accuracy of 93%. 
 
+#### Adding a Negative Class
+
+In order to have a complete model, the classificator should be able to detect also if an image is not a shark. This feature can be useful in certain circumstances, in example if we would like to extend the model in the future and perform a shark detection. The model will therefore be able to correclty detect a region of "context" (water, sky etc.). contain
+
+The file ```build_negative_class.py``` takes care of creating "not shark" images from the original data by means of the following technique:
+1. take a random region (roi) in the image
+2. take the true bounding box corresponding to the shark in the image
+3. select only the rois that do not overlap sufficiently with the true region.
+
+We will discuss briefly how can we accomplish those 3 tasks.
+
+#### _OpenCV Selective Search Algorithm_
+Number 1: we use an OpenCV built in in algorithm: Selective Search. Given an input image the algoritm proposes "interesting regions" based on some features:
+
+- Color similarity
+- Texture similarity
+- Size similarity
+- Shape compatibility
+
+More information about the process can be found [in the OpenCV Official Site](https://learnopencv.com/selective-search-for-object-detection-cpp-python/) The algorithm proposes about 2'000 regions per image. 
+
+#### _Google Vision API and google-vision-wrapper package_
+Number 2: we can obtain the true bounding box by exploiting the object detection of Google: Google vision API. I use the python wrapper I build for the purpose: **google-vision-wrapper**. It makes the process of retrieving the bounding box easier. You can read about it [here](https://github.com/gcgrossi/google-vision-wrapper).
+
+At the end of the process you will have something like the following:
+<img src="assets/build_negative.png" width="50%">
+
+
 #### Conclusions
 
 An end to end sharks images calssification project has been presented. A binary classifier has been trained on 950 images of white sharks and 750 images of hammerhead sharks using three types of architectures/techniques: A MLP, a small version of the VGG convolutional network and a complete VGG16 Network using transfer learning. The best performance has been 98% accuracy on the validation set with the transfer learning. A test set of "tricky images" has been also constructed where the performance of the transfer learning dropped to 89%, a possible sign of difficulty in generalization. However, the performance can be considered acceptable and a baseline for further improvements.
