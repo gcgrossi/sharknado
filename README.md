@@ -269,4 +269,6 @@ An end to end sharks images calssification project has been presented. A binary 
 
 A second approach of transfer learning has been introduced, this time loading the VGG network and replacing the last layer with a custom Fully Connected layer. The base convolutional network has been freezed and only the new "head" has been trained. This model has been trained adding a new class "whale shark" and reaching an overall accuracy on the test set of 93%. An improvement in the previous achievement.
 
+A negative ("not shark") class has been constructed using a methodology involving the Intersection over Union metric between region of interest (proposed by the Region Proposal Selective Search Algorithm) and the true shark bounding box (obtain with the help of the Google Vision API object detection). The class has been added to the model.
+
 The next steps would be adding more data to the original dataset, refine the training and extend the classification to more classes. 
