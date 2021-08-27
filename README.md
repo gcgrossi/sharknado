@@ -226,14 +226,14 @@ The file ```build_negative_class.py``` takes care of creating "not shark" images
 We will discuss briefly how can we accomplish those 3 tasks.
 
 #### _OpenCV Selective Search Algorithm_
-Number 1: we use an OpenCV built in in algorithm: Selective Search. Given an input image the algoritm proposes "interesting regions" based on some features:
+Number 1: we use an OpenCV built-in algorithm: Selective Search. Given an input image the algoritm proposes "interesting regions" based on some features:
 
 - Color similarity
 - Texture similarity
 - Size similarity
 - Shape compatibility
 
-More information about the process can be found [in the OpenCV Official Site](https://learnopencv.com/selective-search-for-object-detection-cpp-python/) The algorithm proposes about 2'000 regions per image. 
+More information about the process can be found [in the OpenCV Official Site](https://learnopencv.com/selective-search-for-object-detection-cpp-python/) The algorithm proposes about 2000 regions per image. 
 
 #### _Google Vision API and google-vision-wrapper package_
 Number 2: we can obtain the true bounding box by exploiting the object detection of Google: Google vision API. I use the python wrapper I build for the purpose: **google-vision-wrapper**. It makes the process of retrieving the bounding box easier. You can read about it [here](https://github.com/gcgrossi/google-vision-wrapper).
